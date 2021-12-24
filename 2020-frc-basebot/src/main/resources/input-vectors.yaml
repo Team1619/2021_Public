@@ -1,0 +1,15 @@
+#odometry_input:
+#  ipv_odometry:
+#    left_encoder: ipn_drivetrain_left_position
+#    right_encoder: ipn_drivetrain_right_position
+#    navx: ipv_navx
+
+#navx:
+#  ipv_navx:
+
+#limelight:
+#  ipv_limelight_turret:
+#    host: turret
+#    degrees: true
+#    pnp: pnp-secondary
+

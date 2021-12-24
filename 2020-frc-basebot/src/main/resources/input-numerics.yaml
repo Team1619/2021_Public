@@ -1,0 +1,52 @@
+controller_axis:
+  ipn_driver_left_y:
+    port: 0
+    axis: 1
+    deadband: 0.15
+    inverted: true
+
+  ipn_driver_left_x:
+    port: 0
+    axis: 2
+    scale: 0.25
+
+  ipn_driver_right_y:
+    port: 0
+    axis: 5
+    scale: 0.01
+
+  ipn_driver_right_x:
+    port: 0
+    axis: 4
+    deadband: 0.15
+    scale: 0.5
+
+  #Do not scale this axis here (it is being used in multiple places)
+  ipn_operator_left_y:
+    port: 1
+    axis: 1
+    inverted: true
+    deadband: 0.15
+
+  ipn_operator_left_x:
+    port: 1
+    axis: 0
+    scale: 1.0
+    deadband: 0.15
+
+  #Do not scale this axis here (it is being used in multiple places)
+  ipn_operator_right_y:
+    port: 1
+    axis: 5
+    inverted: true
+    deadband: 0.15
+
+  ipn_operator_right_x:
+    port: 1
+    axis: 4
+    scale: 0.25
+    deadband: 0.15
+    inverted: true
+
+analog_sensor:
+

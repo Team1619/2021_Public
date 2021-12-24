@@ -1,0 +1,4 @@
+solenoid_double:
+  opb_example:
+    device_number_primary: 1
+    device_number_follower: 6

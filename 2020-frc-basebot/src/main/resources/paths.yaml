@@ -1,0 +1,16 @@
+#path:
+#  pt_center_centerback:
+#    path: [[0, 0], [-80, 0]]
+#    model: standard
+#
+#model:
+#  standard:
+#    spacing: 2.0
+#    smoothing: 0.5
+#    max_acceleration: 0.005
+#    max_deceleration: 0.005
+#    tracking_error_speed: 5.0
+#    min_speed: 0.2
+#    max_speed: 1.0
+#    turn_speed: 0.02
+#    look_ahead_distance: 30.0

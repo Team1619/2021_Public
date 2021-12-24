@@ -1,0 +1,53 @@
+general:
+  initial_teleop_mode: teleop_mode
+  #  initial_teleop_mode: manual_mode
+
+  states:
+
+    sequences:
+      priority_level_1: []
+    parallels:
+       priority_level_1: []
+    ss_example:
+      priority_level_2: []
+      priority_level_1: [st_example]
+      default: [st_example_default]
+
+
+  subsystems: [ss_example]
+
+  input_booleans: [ipb_operator_right_trigger, ipb_operator_left_trigger]
+
+  input_numerics: []
+
+  input_vectors: []
+
+  output_numerics: []
+
+  output_booleans: [opb_example]
+
+
+global_timing:
+  frame_time_threshold_input_service: 80
+  frame_time_threshold_logging_service: 80
+  frame_time_threshold_output_service: 80
+  frame_time_threshold_state_service: 80
+  frame_time_threshold_webdashboard_service: 80
+  frame_cycle_time_threshold_core_thread: 80
+  frame_cycle_time_threshold_info_thread: 80
+
+global_example:
+  what_this_button_does: ipb_operator_left_trigger
+
+log:
+#  ips_selected_auto: true
+
+global_webdashboard:
+
+  auto_selector:
+    origins: []
+    destinations: []
+    actions: []
+
+  match_values:
+
