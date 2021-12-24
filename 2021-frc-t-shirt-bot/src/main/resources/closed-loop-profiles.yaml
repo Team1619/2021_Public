@@ -1,0 +1,16 @@
+other:
+  pr_swerve_heading:
+    profiles:
+      navx:
+        f: 0.0
+#        p: 0.005 # gsc a
+        p: 0.008
+        i: 0.0
+        d: 0.0
+        max_output: 1.0
+      limelight:
+        f: 0.0
+        p: 0.015
+        i: 0.0
+        d: 0.0
+        max_output: 0.5

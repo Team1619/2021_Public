@@ -1,0 +1,45 @@
+single_state:
+
+    # ------ Drivetrain ------
+
+    st_drivetrain_zero:
+        behavior: bh_drivetrain_zero
+        behavior_config:
+            timeout_time: 1000
+            zeroing_threshold: 0.2
+
+    st_drivetrain_swerve:
+        behavior: bh_drivetrain_swerve
+
+    st_drivetrain_accel_test:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_accel_test
+            target_heading: 0.0
+
+    st_drivetrain_swerve_align:
+        behavior: bh_drivetrain_swerve
+        behavior_config:
+            target_heading: 0.0
+            target_limelight: true
+
+    # ------------Paths----------
+
+    st_drivetrain_straightline:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_straightline
+
+
+
+
+
+done_for_time_state:
+
+
+parallel_state:
+
+
+sequencer_state:
+    sq_auto_drive_straight:
+        sequence: [ st_drivetrain_straightline ]

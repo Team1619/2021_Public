@@ -1,0 +1,64 @@
+#odometry_input:
+swerve_odometry_input:
+    ipv_swerve_odometry:
+        front_right_position: ipn_drivetrain_front_right_speed_primary_position
+        front_left_position: ipn_drivetrain_front_left_speed_primary_position
+        back_left_position: ipn_drivetrain_back_left_speed_primary_position
+        back_right_position: ipn_drivetrain_back_right_speed_primary_position
+        front_right_angle: ipv_drivetrain_front_right_angle
+        front_left_angle: ipv_drivetrain_front_left_angle
+        back_left_angle: ipv_drivetrain_back_left_angle
+        back_right_angle: ipv_drivetrain_back_right_angle
+        navx: ipv_navx
+
+navx:
+  ipv_navx:
+
+cancoder:
+  ipv_drivetrain_front_right_angle:
+    device_number: 16
+    read_absolute_position: true
+    magnet_offset: -9.4
+
+  ipv_drivetrain_front_left_angle:
+    device_number: 4
+    read_absolute_position: true
+    magnet_offset: -106.9
+
+  ipv_drivetrain_back_right_angle:
+    device_number: 12
+    read_absolute_position: true
+    magnet_offset: -62.5
+
+  ipv_drivetrain_back_left_angle:
+    device_number: 8
+    read_absolute_position: true
+    magnet_offset: -83.8
+
+limelight:
+    ipv_limelight_shooter:
+        host: turret
+        degrees: true
+        pnp: pnp-secondary
+        pipelines:
+            galactic_search: 0
+            target: 1
+        initial_pipeline: target
+
+network_table_reader:
+    ipv_rpi_vision:
+        host: vision-rpi
+        values:
+            pv: valid
+            px: x
+            py: y
+
+network_table_odometry:
+    ipv_rpi_odometry:
+        network_table_input: ipv_rpi_vision
+
+odometry_fuser:
+    ipv_fused_odometry:
+        relative_odometry_input: ipv_swerve_odometry
+        absolute_odometry_input: ipv_rpi_odometry
+        absolute_odometry_delay: 150
