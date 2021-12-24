@@ -1,0 +1,13 @@
+.idea/
+/build/
+/.gradle/
+/uacr-robot-core
+/uacr-pure-pursuit
+/uacr-robot-dashboard
+/frc-core-plugin
+/2020-frc-compbot
+/2020-frc-protobot
+/2020-frc-basebot
+/2021-frc-challengebot
+/2021-frc-defensebot
+/2021-frc-t-shirt-bot

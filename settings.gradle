@@ -1,0 +1,12 @@
+rootProject.name = 'uacr-framework-development'
+
+include 'uacr-robot-core'
+include 'uacr-pure-pursuit'
+include 'uacr-robot-dashboard'
+include 'frc-core-plugin'
+include '2020-frc-compbot'
+include '2020-frc-protobot'
+include '2020-frc-basebot'
+include '2021-frc-challengebot'
+include '2021-frc-defensebot'
+include '2021-frc-t-shirt-bot'

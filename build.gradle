@@ -1,0 +1,135 @@
+// Resources on multi-project gradle builds
+// https://docs.gradle.org/current/userguide/multi_project_builds.html
+// https://docs.gradle.org/current/userguide/composite_builds.html?_ga=2.66124078.1099022363.1632259438-1421689162.1623448255#defining_composite_builds
+
+
+subprojects {
+    configurations {
+        dev
+        implementation.extendsFrom(dev)
+    }
+}
+
+project(':uacr-pure-pursuit') {
+    dependencies {
+        dev project(':uacr-robot-core')
+    }
+}
+
+project(':uacr-robot-dashboard') {
+    dependencies {
+        dev project(':uacr-robot-core')
+    }
+}
+
+project(':frc-core-plugin') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-robot-dashboard')
+    }
+}
+
+project(':2020-frc-compbot') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-pure-pursuit')
+        dev project(':uacr-robot-dashboard')
+        dev project(':frc-core-plugin')
+    }
+}
+
+project(':2020-frc-protobot') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-robot-dashboard')
+        dev project(':frc-core-plugin')
+    }
+}
+
+project(':2020-frc-basebot') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-robot-dashboard')
+        dev project(':frc-core-plugin')
+    }
+}
+
+project(':2021-frc-challengebot') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-robot-dashboard')
+        dev project(':frc-core-plugin')
+    }
+}
+
+project(':2021-frc-defensebot') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-pure-pursuit')
+        dev project(':uacr-robot-dashboard')
+        dev project(':frc-core-plugin')
+    }
+}
+
+project(':2021-frc-t-shirt-bot') {
+    dependencies {
+        dev project(':uacr-robot-core')
+        dev project(':uacr-pure-pursuit')
+        dev project(':uacr-robot-dashboard')
+        dev project(':frc-core-plugin')
+    }
+}
+
+group 'org.uacr'
+
+repositories {
+    mavenCentral()
+}
+
+task compbotDeploy {
+    dependsOn ':2020-frc-compbot:deploy'
+}
+
+task compbotSim {
+    dependsOn ':2020-frc-compbot:run'
+}
+
+task protobotDeploy {
+    dependsOn ':2020-frc-protobot:deploy'
+}
+
+task protobotSim {
+    dependsOn ':2020-frc-protobot:run'
+}
+
+task basebotDeploy {
+    dependsOn ':2020-frc-basebot:deploy'
+}
+
+task basebotSim {
+    dependsOn ':2020-frc-basebot:run'
+}
+
+task challengebotDeploy {
+    dependsOn ':2021-frc-challengebot:deploy'
+}
+
+task challengebotSim {
+    dependsOn ':2021-frc-challengebot:run'
+}
+
+task defensebotDeploy {
+    dependsOn ':2021-frc-defensebot:deploy'
+}
+
+task defensebotSim {
+    dependsOn ':2021-frc-defensebot:run'
+}
+
+task tshirtbotDeploy {
+    dependsOn ':2021-frc-t-shirt-bot:deploy'
+}
+
+task tshirtbotSim {
+    dependsOn ':2021-frc-t-shirt-bot:run'
+}
