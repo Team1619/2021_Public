@@ -1,0 +1,253 @@
+/*html to configure the values page of the webdashboard,
+which has a table for viewing values in the robot code's input and output service,
+an area for the user to put values they want to see,
+allows the user to change values in sim mode,
+and handles gamepad input in sim mode*/
+
+body {
+    display: flex;
+}
+
+#valueTableHeader {
+    width: 100%;
+}
+
+table {
+    margin-top: 3vh;
+    margin-left: 2vw;
+    background: var(--foreground);
+    color: whitesmoke;
+    border-radius: 1vmin;
+}
+
+thead {
+    display: block;
+    width: 100%;
+}
+
+tbody {
+    display: block;
+    overflow: auto;
+    height: 84vh;
+    border: lightgrey;
+    border: 1px;
+}
+
+th {
+    font-size: 3vw;
+    min-width: 14.5vw;
+    padding: 1vmin;
+}
+
+td {
+    font-size: 2vw;
+    min-width: 10vw;
+    min-height: 3vh;
+    padding: 1vmin;
+}
+
+.typeCell {
+    max-width: 10vw !important;
+}
+
+#dragContainer {
+    flex-grow: 100;
+}
+
+#valuePopup {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    visibility: hidden;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+#valueForm {
+    top: 20%;
+    padding: 0 0 3% 0;
+}
+
+#valueInputWrapper {
+    text-align: center;
+    position: relative;
+    top: 10%;
+    height: 20%;
+}
+
+#inputVectorSelector {
+    position: relative;
+    display: none;
+    left: 20%;
+    width: 60%;
+    height: 8vh;
+    margin-bottom: 2vh;
+}
+
+#valueInput {
+    left: 20%;
+    margin-bottom: 2%;
+    height: 8vh;
+}
+
+#valueButtonWrapper {
+    position: relative;
+    top: 20%;
+    height: 20%;
+}
+
+#viewerButton {
+    background: var(--orange);
+    width: auto;
+    height: 80%;
+}
+
+#toggleGraphButton {
+    background: var(--orange);
+    width: auto;
+    height: 80%;
+}
+
+#closeButton {
+    width: auto;
+    height: 80%;
+    background: var(--red);
+}
+
+#updateButton {
+    background: var(--green);
+    width: auto;
+    height: 80%;
+}
+
+#vectorGraphingPopup {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#vectorForm {
+    top: 20%;
+    padding: 0 0 3% 0;
+}
+
+#vectorButtonWrapper {
+    position: relative;
+    top: 20%;
+    height: 20%;
+}
+
+#vectorCloseButton {
+    width: auto;
+    height: 80%;
+    background: var(--red);
+}
+
+#vectorGraphButton {
+    width: auto;
+    height: 80%;
+    background: var(--green);
+}
+
+#menuPopup {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#menuForm {
+    top: 10vh;
+}
+
+#fmsSelector {
+    margin-bottom: 2%;
+}
+
+#driverSelector {
+    margin-bottom: 2%;
+}
+
+#operatorSelector {
+    margin-bottom: 2%;
+}
+
+#menuCloseButton {
+    background: var(--green);
+}
+
+h2.form {
+    color: var(--background);
+    margin: 2%;
+}
+
+button.form {
+    position: relative;
+    top: 5%;
+    width: 50%;
+    height: 20%;
+    padding: 0.6% 5% 0.6% 5%;
+    margin: 2% 0% 2% 0%;
+    border-radius: 2vh;
+    border-width: 0;
+    font-size: 5vmin;
+    color: darkslategrey;
+}
+
+select.form {
+    margin: 0;
+    width: 80%;
+    height: 15%;
+    font-size: 4vmin;
+    background: var(--white);
+    color: var(--foreground);
+}
+
+input.form {
+    position: relative;
+    top: 5%;
+    width: 60%;
+    height: 90%;
+    font-size: 5vmin;
+    border-width: 1px;
+    margin-bottom: 1vh;
+    border-color: var(--background);
+    background: var(--white);
+    color: var(--foreground);
+}
+
+div.form {
+    background: var(--white);
+    position: absolute;
+    visibility: hidden;
+    border-radius: 3vh;
+    border-width: 0;
+    left: 15%;
+    top: 15vh;
+    width: 70%;
+    height: auto;
+    text-align: center;
+}
+
+h1.form {
+    margin-bottom: 2vh;
+}
+
+.draggableViewer {
+    position: absolute;
+    background: var(--foreground);
+    color: var(--white);
+    margin: 4px;
+    padding: 6px;
+    border-radius: 4px;
+    width: auto;
+    font-size: 3vmin;
+}

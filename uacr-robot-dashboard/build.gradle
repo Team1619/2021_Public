@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'org.uacr'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // When being compiled inside the Framework Development project ('dev')
+    // the jar files used are the ones compiled locally in that project
+    if (configurations.find { it.name == 'dev' }) {
+        implementation files('../uacr-robot-core/build/libs/uacr-robot-core.jar')
+    } else {
+        // When being compiled outside the Framework Development project (!dev)
+        // the jar files used come from the 2021-frc-framework-libs repository
+        implementation files('../2021-frc-framework-libs/uacr-robot-core.jar')
+    }
+
+    implementation 'com.google.guava:guava:25.1-jre'
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

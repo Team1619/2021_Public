@@ -1,0 +1,83 @@
+<!--js code to run the log match of the webdashboard,
+which has camera views and displays values sent from the robot code-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Page title for web browser-->
+    <title>Match</title>
+
+    <!--All css stylesheets used in the page-->
+    <link href="/pages/webdashboard/assets/style.css" rel="stylesheet">
+    <link href="/pages/webdashboard/match/match.css" rel="stylesheet">
+
+</head>
+
+<body ondblclick="chooseAuto()">
+
+<!--Main grid which holds all normally displayed elements-->
+<div class="grid">
+
+    <!--Main robot camera view-->
+    <div class="camera" id="mainCamera">
+        <!--First limelight camera view-->
+<!--        <div class="camera" id="secondaryCamera1"></div>-->
+
+        <!--Wrapper for camera overlay text-->
+        <div id="cameraOverlayWrapper">
+            <div id="limelightLocked" class="unselectable">Locked</div>
+            <div id="turretAligned" class="unselectable">Turret</div>
+            <div id="flywheelPrimed" class="unselectable">Flywheel</div>
+        </div>
+    </div>
+
+
+    <!--Second limelight camera view
+    <div class="camera" id="secondaryCamera2"></div>-->
+
+    <!--Container that holds displays for values sent from the robot code-->
+    <div class="unselectable" id="valuesContainer"></div>
+</div>
+
+<!--Menu used for the auto chooser if page is independent from the rest of the dashboard-->
+<!--Opened on a double click anywhere on the page body-->
+<div id="autoPopup">
+
+    <!--Wrapper that contains all interactive elements in the form-->
+    <div class="form" id="autoForm">
+
+        <!--Wrapper that contains the three selectors in the form in a vertical layout-->
+        <div id="autoSelectorWrapper">
+
+            <!--Selects the auto origin-->
+            <select class="form autoForm" id="autoOriginSelector"></select>
+
+            <!--Selects the auto destination-->
+            <select class="form autoForm" id="autoDestinationSelector"></select>
+
+            <!--Selects the auto action-->
+            <select class="form autoForm" id="autoActionSelector"></select>
+        </div>
+
+        <!--Wrapper that contains the cancel and select in the form in a horizontal layout-->
+        <div id="autoButtonWrapper">
+
+            <!--Closes the auto chooser without sending auto data to the robot code-->
+            <button class="form" id="autoCancelButton" onclick="closeChooseAuto(false)">Cancel</button>
+
+            <!--Closes the auto chooser and sends auto data to the robot code-->
+            <button class="form" id="autoSelectButton" onclick="closeChooseAuto(true)">Select</button>
+        </div>
+    </div>
+</div>
+
+<!--All js scripts used in the page-->
+<script src="/pages/webdashboard/assets/jquery.js"></script>
+<script src="/pages/webdashboard/assets/jqueryknob.js"></script>
+<script src="/pages/webdashboard/assets/urlformdata.js"></script>
+<script src="/pages/webdashboard/match/match.js"></script>
+
+</body>
+</html>

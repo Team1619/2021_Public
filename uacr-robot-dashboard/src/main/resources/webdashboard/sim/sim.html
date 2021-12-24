@@ -1,0 +1,34 @@
+<!--html to configure the values page of the webdashboard,
+which has a table for viewing values in the robot code's input and output service,
+an area for the user to put values they want to see,
+allows the user to change values in sim mode,
+and handles gamepad input in sim mode-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Page title for web browser-->
+    <title>Sim</title>
+
+    <!--All css stylesheets used in the page-->
+    <link href="/pages/webdashboard/assets/style.css" rel="stylesheet">
+    <link href="/pages/webdashboard/sim/sim.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="canvasWrapper">
+    <canvas id="canvas" width="2000" height="2000"></canvas>
+</div>
+
+<!--All js scripts used in the page and update selections-->
+<script src="/pages/webdashboard/assets/jquery.js"></script>
+<script src="/pages/webdashboard/assets/urlformdata.js"></script>
+<script src="/pages/webdashboard/assets/mathextras.js"></script>
+<script src="/pages/webdashboard/sim/sim.js"></script>
+
+</body>
+</html>

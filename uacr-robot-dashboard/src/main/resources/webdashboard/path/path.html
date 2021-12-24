@@ -1,0 +1,216 @@
+<!--html to configure the path page of the webdashboard,
+which has a table and graph to create and view purepursuit paths-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Page title for web browser-->
+    <title>Path</title>
+
+    <!--All css stylesheets used in the page-->
+    <link href="/pages/webdashboard/assets/style.css" rel="stylesheet">
+    <link href="/pages/webdashboard/path/path.css" rel="stylesheet">
+
+</head>
+
+<body ondblclick="openMenu()">
+
+<div id="graphWrapper">
+    <!--Wrapper for the graph to size properly to page-->
+    <div id="pathGraphWrapper">
+
+        <!--Canvas which is used by chart.js to make the graph-->
+        <canvas id="pathGraph"></canvas>
+    </div>
+
+    <!--Wrapper for the graph to size properly to page-->
+    <div id="trajectoryGraphWrapper">
+
+        <!--Canvas which is used by chart.js to make the graph-->
+        <canvas id="trajectoryGraph"></canvas>
+    </div>
+</div>
+
+<!--Table for the user to input points into-->
+<table id="pointTable">
+
+    <!--Table head with the header row-->
+    <thead>
+
+    <!--Table header row-->
+    <tr class="unselectable">
+
+        <!--X head cell-->
+        <th>X</th>
+
+        <!--Y head cell-->
+        <th>Y</th>
+    </tr>
+    </thead>
+
+    <!--Table body for the user to input points into-->
+    <tbody id="pointTableBody"></tbody>
+</table>
+
+<!--Menu to clear, save, and load paths-->
+<div class="unselectable" id="menuPopup">
+
+    <!--Button wrapper to put the buttons in a horizontal layout-->
+    <div class="form">
+
+        <!--Copies the path to the computer clipboard as yaml a point array-->
+        <button class="form" id="copyButton" onclick="copyToClipboard()">Copy Path</button>
+
+        <!--Opens a menu for the user to enter/paste a path as a yaml point array-->
+        <button class="form" id="pasteButton" onclick="openPaste()">Paste Path</button>
+
+        <!--Opens a menu for the user to enter/paste a path as a yaml point array-->
+        <button class="form" id="settingsButton" onclick="openSettings()">Path Settings</button>
+
+        <!--Clears all the points from the page-->
+        <button class="form" id="clearButton" onclick="clearPath()">Clear</button>
+
+        <!--Closes the menu-->
+        <button class="form" id="closeButton" onclick="closeMenu()">Close</button>
+    </div>
+</div>
+
+<!--Menu for the user to enter/paste a path as a yaml point array-->
+<div class="unselectable" id="pastePopup">
+
+    <!--Wrapper the the form in the paste menu, to put the contents in a vertical layout-->
+    <div class="form" id="pasteForm">
+
+        <!--Title for the input-->
+        <h1>Path</h1>
+
+        <!--Text input for the user to enter/paste a path as a yaml point array-->
+        <input autocomplete="off" class="form" id="pathInput">
+
+        <!--Button wrapper to put the buttons in a horizontal layout-->
+        <div>
+
+            <!--Button to close the paste menu-->
+            <button class="form" id="pasteCloseButton" onclick="closePaste(false)">Close</button>
+
+            <!--Button put the path into the table and on the graph-->
+            <button class="form" id="pastePathButton" onclick="closePaste(true)">Paste</button>
+        </div>
+    </div>
+</div>
+
+<!--Menu for the user to change path settings a path as a yaml point array-->
+<div class="unselectable" id="settingsPopup">
+
+    <!--Wrapper the the form in the path settings menu, to put the contents in a vertical layout-->
+    <div class="form" id="settingsForm">
+
+        <div>
+            <!--Title for the input-->
+            <h2>Spacing</h2>
+
+            <!--Text input for the user to enter a smoothing value-->
+            <input autocomplete="off" class="form pathSettings" id="spacingInput" type="number">
+        </div>
+
+        <div>
+            <!--Title for the input-->
+            <h2>Smoothing</h2>
+
+            <!--Text input for the user to enter a smoothing value-->
+            <input autocomplete="off" class="form pathSettings" id="smoothingInput" type="number">
+        </div>
+
+        <div>
+            <!--Title for the input-->
+            <h2>Max Speed</h2>
+
+            <!--Text input for the user to enter a max speed value-->
+            <input autocomplete="off" class="form pathSettings" id="maxSpeedInput" type="number">
+        </div>
+
+        <div>
+            <!--Title for the input-->
+            <h2>Min Speed</h2>
+
+            <!--Text input for the user to enter a min speed value-->
+            <input autocomplete="off" class="form pathSettings" id="minSpeedInput" type="number">
+        </div>
+
+        <div>
+            <!--Title for the input-->
+            <h2>Max Acceleration</h2>
+
+            <!--Text input for the user to enter a max acceleration value-->
+            <input autocomplete="off" class="form pathSettings" id="maxAccelerationInput" type="number">
+        </div>
+
+        <div>
+            <!--Title for the input-->
+            <h2>Max Deceleration</h2>
+
+            <!--Text input for the user to enter a max deceleration value-->
+            <input autocomplete="off" class="form pathSettings" id="maxDecelerationInput" type="number">
+        </div>
+
+        <div>
+            <!--Title for the input-->
+            <h2>Turn Speed</h2>
+
+            <!--Text input for the user to enter a turn speed value-->
+            <input autocomplete="off" class="form pathSettings" id="turnSpeedInput" type="number">
+        </div>
+
+        <!--Button wrapper to put the buttons in a horizontal layout-->
+        <div>
+
+            <!--Button to close the paste menu-->
+            <button class="form" id="settingsCloseButton" onclick="closeSettings(false)">Close</button>
+
+            <!--Copy path settings-->
+            <button class="form" id="settingsCopyButton" onclick="copySettings()">Copy</button>
+
+            <!--Paste path settings-->
+            <button class="form" id="settingsPasteButton" onclick="pasteSettings()">Paste</button>
+
+            <!--Button put the path into the table and on the graph-->
+            <button class="form" id="settingsSaveButton" onclick="closeSettings(true)">Save</button>
+        </div>
+    </div>
+</div>
+
+<!--Menu for the user to enter/paste path settings as a yaml map-->
+<div class="unselectable" id="settingsPastePopup">
+
+    <!--Wrapper the the form in the paste menu, to put the contents in a vertical layout-->
+    <div class="form" id="settingsPasteForm">
+
+        <!--Title for the input-->
+        <h1>Settings</h1>
+
+        <!--Text input for the user to enter/paste a path as a yaml point array-->
+        <textarea autocomplete="off" class="form" cols="40" id="settingsInput" rows="10"></textarea>
+
+        <!--Button wrapper to put the buttons in a horizontal layout-->
+        <div>
+
+            <!--Button to close the paste menu-->
+            <button class="form" id="settingsPasteCloseButton" onclick="closeSettingsPaste(false)">Close</button>
+
+            <!--Button put the path into the table and on the graph-->
+            <button class="form" id="pasteSettingsButton" onclick="closeSettingsPaste(true)">Paste</button>
+        </div>
+    </div>
+</div>
+
+<!--All js scripts used in the page-->
+<script src="/pages/webdashboard/assets/urlformdata.js"></script>
+<script src="/pages/webdashboard/assets/mathextras.js"></script>
+<script src="/pages/webdashboard/assets/chart.js"></script>
+<script src="/pages/webdashboard/assets/jquery.js"></script>
+<script src="/pages/webdashboard/path/path.js"></script>
+
+</body>
+</html>

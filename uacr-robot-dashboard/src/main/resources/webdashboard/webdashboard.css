@@ -1,0 +1,234 @@
+/*css code to style the main page of the webdashboard,
+which contains the sub-pages*/
+
+div.tab {
+    background: var(--foreground);
+    width: 100%;
+    height: 8vh;
+}
+
+div.connectionwrapper {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    width: auto;
+    height: 8vh;
+    margin-right: 0.5vw;
+}
+
+div.connection {
+    border-radius: 2vmin;
+    float: none;
+    width: 0.7vw;
+    height: 8vh;
+    margin-right: 0.2vw;
+}
+
+div.connectionbar {
+    border-radius: 2vmin;
+    background: var(--red);
+    animation: display-connection-bar 1000ms;
+}
+
+button.tablink {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0vh 0.5vw 0vh 0.5vw;
+    transition: 0.3s;
+    font-size: 5vmin;
+    min-width: 8vw;
+    height: 8vh;
+    animation: expand-tab-link 1000ms;
+}
+
+button.tablink:hover {
+    color: var(--white);
+}
+
+button.tablink:active {
+    background-color: inherit;
+    color: var(--white);
+}
+
+button.unselectedtablink {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+button.selectedtablink {
+    background: var(--background);
+    color: var(--foreground);
+}
+
+#connectionBarSpacer1 {
+    height: 5vh;
+}
+
+#connectionBar1 {
+    height: 2vh;
+    animation-duration: 500ms;
+}
+
+#connectionBarSpacer2 {
+    height: 3.75vh;
+}
+
+#connectionBar2 {
+    height: 3.25vh;
+    animation-duration: 1000ms;
+}
+
+#connectionBarSpacer3 {
+    height: 2.5vh;
+}
+
+#connectionBar3 {
+    height: 4.5vh;
+    animation-duration: 1500ms;
+}
+
+#connectionBarSpacer4 {
+    height: 1.25vh
+}
+
+#connectionBar4 {
+    height: 5.75vh;
+    animation-duration: 2000ms;
+}
+
+#autoButton {
+    background: var(--background);
+    color: var(--foreground);
+    float: right;
+    width: auto;
+    margin-right: 0.5vw;
+}
+
+.tabcontent {
+    border: 0;
+    color: lightgrey;
+    display: none;
+    padding: 0;
+    width: 100%;
+    height: 92vh;
+}
+
+.selectedtabcontent {
+    display: block;
+    animation: display-tab-content 750ms;
+}
+
+button.form {
+    position: relative;
+    top: 5%;
+    width: 40%;
+    height: 90%;
+    border-radius: 2vh;
+    border-width: 0;
+    font-size: 5vmin;
+    color: darkslategrey;
+}
+
+button.standard {
+    position: relative;
+    top: 5%;
+    width: 40%;
+    height: 90%;
+    border-radius: 1vh;
+    border-width: 0;
+    font-size: 5vmin;
+    color: white;
+    background: mediumslateblue;
+}
+
+select.form {
+    position: relative;
+    top: 5%;
+    width: 60%;
+    height: 90%;
+    font-size: 5vmin;
+    background: var(--white);
+    color: var(--foreground);
+}
+
+div.form {
+    background: var(--white);
+    position: absolute;
+    visibility: hidden;
+    border-radius: 3vh;
+    border-width: 0;
+    left: 17%;
+    top: 30%;
+    width: 60%;
+    height: 40%;
+    text-align: center;
+}
+
+#autoPopup {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#autoForm {
+    height: auto;
+    padding: 3%;
+    left: 17%;
+}
+
+#autoSelectorWrapper {
+    position: relative;
+    top: 10%;
+    height: 20%;
+}
+
+.autoForm {
+    margin-bottom: 2%;
+}
+
+#autoButtonWrapper {
+    position: relative;
+    top: 50%;
+    height: 20%;
+}
+
+#autoCancelButton {
+    width: 30%;
+    background: var(--red)
+}
+
+#autoSelectButton {
+    background: var(--green);
+}
+
+@keyframes expand-tab-link {
+    0% {
+        font-size: 0;
+    }
+}
+
+@keyframes display-connection-bar {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes display-tab-content {
+    0% {
+        opacity: 0;
+    }
+}

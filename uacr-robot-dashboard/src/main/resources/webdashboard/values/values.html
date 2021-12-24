@@ -1,0 +1,167 @@
+<!--html to configure the values page of the webdashboard,
+which has a table for viewing values in the robot code's input and output service,
+an area for the user to put values they want to see,
+allows the user to change values in sim mode,
+and handles gamepad input in sim mode-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Page title for web browser-->
+    <title>Values</title>
+
+    <!--All css stylesheets used in the page-->
+    <link href="/pages/webdashboard/assets/style.css" rel="stylesheet">
+    <link href="/pages/webdashboard/values/values.css" rel="stylesheet">
+
+</head>
+
+<body ondblclick="openMenu()">
+
+<!--Values table which displays robot code values-->
+<table id="valueTable">
+
+    <!--The header of the values table, which contains the header row-->
+    <thead>
+
+    <!--The header row, which contains the head cells-->
+    <tr id="valueTableHeader">
+
+        <!--Name display head cell-->
+        <th class="unselectable" id="nameHeader">Name</th>
+
+        <!--Value display head cell-->
+        <th class="unselectable">Value</th>
+    </tr>
+    </thead>
+
+    <!--Display table body in which robot code values will be put-->
+    <tbody id="valueTableBody"></tbody>
+</table>
+
+<!--Container popout values-->
+<div id="dragContainer"></div>
+
+<!--Menu popup for value manipulating and extra viewing options-->
+<div id="valuePopup">
+
+    <!--Interaction form with buttons and inputs-->
+    <div class="form" id="valueForm">
+
+        <!--Header to display the name of the value being interacted with-->
+        <h1 class="form" id="valueDisplay"></h1>
+
+        <!--Wrapper to layout the inputs and selectors vertically-->
+        <div id="valueInputWrapper">
+
+            <!--Selector to pick what part of a vector to edit-->
+            <select class="form" id="inputVectorSelector"></select>
+
+            <!--Input for new value-->
+            <input class="form" id="valueInput" onkeyup="onValueChange()">
+        </div>
+
+        <!--Wrapper to layout the buttons horizontally-->
+        <div class="unselectable" id="valueButtonWrapper">
+
+            <!--Button to create a new draggable viewer-->
+            <button class="form" id="viewerButton" onclick="onCreateDraggableViewer()">Popout</button>
+
+            <!--Button toggle whether the value is displayed on the graph-->
+            <button class="form" id="toggleGraphButton" onclick="onToggleGraph()">Toggle Graph</button>
+
+            <!--Button to close the popup-->
+            <button class="form" id="closeButton" onclick="closeUpdateValue(false)">Cancel</button>
+
+            <!--Button to close the popup and update the value in the robot code-->
+            <button class="form" id="updateButton" onclick="closeUpdateValue(true)">Update</button>
+        </div>
+    </div>
+</div>
+
+<!--Menu popup for selecting the data streams to graph a vector-->
+<div id="vectorGraphingPopup">
+
+    <!--Interaction form with buttons and inputs-->
+    <div class="form" id="vectorForm">
+
+        <!--Header to display the name of the vector being graphed-->
+        <h1 class="form" id="vectorDisplay"></h1>
+
+        <!--Header to display "X" for the X data stream-->
+        <h2 class="form">X</h2>
+
+        <!--Selector for the value from the vector that will be used for the X data stream-->
+        <select class="form" id="vectorGraphingX"></select>
+
+        <!--Header to display "Y" for the Y data stream-->
+        <h2 class="form">Y</h2>
+
+        <!--Selector for the value from the vector that will be used for the Y data stream-->
+        <select class="form" id="vectorGraphingY"></select>
+
+        <!--Wrapper to layout the buttons horizontally-->
+        <div class="unselectable" id="vectorButtonWrapper">
+
+            <!--Button to close the popup-->
+            <button class="form" id="vectorCloseButton" onclick="closeVectorGraphingMenu(false)">Cancel</button>
+
+            <!--Button to close the popup and graph the vector-->
+            <button class="form" id="vectorGraphButton" onclick="closeVectorGraphingMenu(true)">Graph</button>
+        </div>
+    </div>
+</div>
+
+<!--Menu popup for FMS mode and sim gamepads-->
+<div class="unselectable" id="menuPopup">
+
+    <!--Interaction form with buttons and inputs-->
+    <div class="form" id="menuForm">
+
+        <!--Header to label the FMS Mode selector-->
+        <h2 class="form">FMS Mode</h2>
+
+        <!--Selector for the FMS mode-->
+        <select class="form" id="fmsSelector">
+
+            <!--Selector "Disabled" option-->
+            <option value="disabled">Disabled</option>
+
+            <!--Selector "Auto" option-->
+            <option value="auto">Auto</option>
+
+            <!--Selector "Teleop" option-->
+            <option value="teleop">Teleop</option>
+
+            <!--Selector "Test" option-->
+            <option value="test">Test</option>
+        </select>
+
+        <!--Header to label the driver gamepad selector-->
+        <h2 class="form">Driver</h2>
+
+        <!--Selector for the driver gamepad-->
+        <select class="form" id="driverSelector"></select>
+
+        <!--Header to label the operator gamepad selector-->
+        <h2 class="form">Operator</h2>
+
+        <!--Selector for the operator gamepad-->
+        <select class="form" id="operatorSelector"></select>
+
+        <!--Spacer-->
+        <br>
+
+        <!--Button to close the popup-->
+        <button class="form" id="menuCloseButton" onclick="closeMenu()">Close</button>
+    </div>
+</div>
+
+<!--All js scripts used in the page and update selections-->
+<script src="/pages/webdashboard/assets/urlformdata.js"></script>
+<script src="/pages/webdashboard/values/values.js"></script>
+
+</body>
+</html>
