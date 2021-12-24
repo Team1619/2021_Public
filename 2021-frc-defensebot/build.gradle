@@ -1,0 +1,87 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "edu.wpi.first.GradleRIO" version "2021.3.1"
+}
+
+group 'org.team1619'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+def ROBOT_MAIN_CLASS = 'org.team1619.Robot'
+
+mainClassName = 'org.team1619.Sim'
+
+repositories {
+    mavenCentral()
+ }
+
+dependencies {
+
+    // When being compiled inside the Framework Development project ('dev')
+    // the jar files used are the ones compiled locally in that project
+    if (configurations.find { it.name == 'dev' }) {
+        implementation files('../uacr-robot-core/build/libs/uacr-robot-core.jar')
+        implementation files('../frc-core-plugin/build/libs/frc-core-plugin.jar')
+        implementation files('../uacr-robot-dashboard/build/libs/uacr-robot-dashboard.jar')
+    } else {
+        // When being compiled outside the Framework Development project (!dev)
+        // the jar files used come from the 2021-frc-framework-libs repository
+        implementation files('../2021-frc-framework-libs/uacr-robot-core.jar')
+        implementation files('../2021-frc-framework-libs/frc-core-plugin.jar')
+        implementation files('../2021-frc-framework-libs/uacr-robot-dashboard.jar')
+    }
+
+    implementation 'com.google.guava:guava:25.1-jre'
+    implementation 'org.yaml:snakeyaml:1.21'
+
+    implementation wpi.deps.wpilib()
+    nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
+    nativeDesktopZip wpi.deps.wpilibJni(wpi.platforms.desktop)
+
+    implementation wpi.deps.vendor.java()
+    nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
+    nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
+}
+
+// Define my targets (RoboRIO) and artifacts (deployable files)
+// This is added by GradleRIO's backing project EmbeddedTools.
+deploy {
+    targets {
+        roboRIO("roborio") {
+            // Team number is loaded either from the .wpilib/wpilib_preferences.json
+            // or from command line. If not found an exception will be thrown.
+            // You can use getTeamOrDefault(team) instead of getTeamNumber if you
+            // want to store a team number in this file.
+            team = frc.getTeamNumber()
+        }
+    }
+    artifacts {
+        frcJavaArtifact('frcJava') {
+            targets << "roborio"
+            // Debug can be overridden by command line, for use with VSCode
+            debug = frc.getDebugOrDefault(false)
+        }
+        // Built in artifact to deploy arbitrary files to the roboRIO.
+        fileTreeArtifact('frcStaticFileDeploy') {
+            // The directory below is the local directory to deploy
+            files = fileTree(dir: 'src/main/deploy')
+            // Deploy to RoboRIO target, into /home/lvuser/deploy
+            targets << "roborio"
+            directory = '/home/lvuser/deploy'
+        }
+    }
+}
+
+def includeDesktopSupport = false
+
+// Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
+// in order to make them all available at runtime. Also adding the manifest so WPILib
+// knows where to look for our Robot Class.
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+}

@@ -1,0 +1,7 @@
+general:
+  logger:
+    log_level: DEBUG
+
+  robot:
+#    robot_varaition: practicebot
+

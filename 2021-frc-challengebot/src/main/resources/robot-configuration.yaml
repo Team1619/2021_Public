@@ -1,0 +1,90 @@
+general:
+
+  initial_teleop_mode: teleop_mode
+  #  initial_teleop_mode: manual_mode
+
+  states:
+    sequences:
+      priority_level_4: [sq_auto_accel_test_test, sq_auto_anc_anc_barrel, sq_auto_anc_anc_slalom, sq_auto_anc_anc_bounce, sq_auto_anc_bounce ]
+
+    parallels:
+
+    ss_drivetrain:
+      priority_level_3: [ st_drivetrain_zero ]
+      priority_level_2: [ st_drivetrain_swerve_align ]
+      priority_level_1: [ st_drivetrain_accel_test, st_drivetrain_gsc_a_blue, st_drivetrain_gsc_a_red, st_drivetrain_gsc_b_blue, st_drivetrain_gsc_b_red, st_drivetrain_anc_barrel, st_drivetrain_anc_slalom, st_drivetrain_anc_bounce,  st_drivetrain_oval, st_drivetrain_straightline,
+                          st_drivetrain_anc_bounce_1, st_drivetrain_anc_bounce_2, st_drivetrain_anc_bounce_3, st_drivetrain_anc_bounce_4]
+      default: [ st_drivetrain_swerve ]
+
+    ss_collector_servo:
+      priority_level_1: [ st_collector_servo_zero ]
+      default: [ st_collector_servo_release ]
+
+  subsystems: [ ss_drivetrain, ss_collector_servo ]
+
+  input_booleans: [ ipb_driver_back, ipb_driver_start, ipb_driver_left_trigger, ipb_driver_left_bumper, ipb_driver_a, ipb_driver_x, ipb_driver_y, ipb_driver_b, ipb_driver_right_bumper, ipb_driver_right_trigger, ipb_driver_dpad_up, ipb_driver_dpad_down ]
+
+  input_numerics: [ ipn_driver_left_y, ipn_driver_left_x, ipn_driver_right_y, ipn_driver_right_x ]
+
+  input_vectors: [ ipv_navx,
+                   ipv_limelight_shooter,
+                   ipv_drivetrain_front_right_angle, ipv_drivetrain_front_left_angle, ipv_drivetrain_back_left_angle, ipv_drivetrain_back_right_angle,
+                   ipv_swerve_odometry, ipv_rpi_vision, ipv_rpi_odometry, ipv_fused_odometry ]
+
+  output_numerics: [ opn_drivetrain_front_right, opn_drivetrain_front_left, opn_drivetrain_back_left, opn_drivetrain_back_right,
+                     opn_drivetrain_front_right_angle, opn_drivetrain_front_left_angle, opn_drivetrain_back_left_angle, opn_drivetrain_back_right_angle,
+                     opn_collector_servo ]
+
+  output_booleans: [ ]
+
+global_timing:
+  frame_time_threshold_input_service: 80
+  frame_time_threshold_logging_service: 80
+  frame_time_threshold_output_service: 80
+  frame_time_threshold_state_service: 80
+  frame_time_threshold_webdashboard_service: 80
+  frame_cycle_time_threshold_core_thread: 80
+  frame_cycle_time_threshold_info_thread: 80
+
+global_drivetrain_swerve:
+  module_positions: [ [ 6.75, -6.75 ], [ 6.75, 6.75 ], [ -6.75, 6.75 ], [ -6.75, -6.75 ] ]
+  input_angle_names: [ ipv_drivetrain_front_right_angle, ipv_drivetrain_front_left_angle, ipv_drivetrain_back_left_angle, ipv_drivetrain_back_right_angle ]
+  input_position_names: [ ipn_drivetrain_front_right_speed_primary_position, ipn_drivetrain_front_left_speed_primary_position, ipn_drivetrain_back_left_speed_primary_position, ipn_drivetrain_back_right_speed_primary_position]
+  output_angle_names: [ opn_drivetrain_front_right_angle, opn_drivetrain_front_left_angle, opn_drivetrain_back_left_angle, opn_drivetrain_back_right_angle ]
+  output_speed_names: [ opn_drivetrain_front_right, opn_drivetrain_front_left, opn_drivetrain_back_left, opn_drivetrain_back_right ]
+  navx: ipv_navx
+  limelight: ipv_limelight_shooter
+  odometry: ipv_fused_odometry
+  heading_controller: pr_swerve_heading
+  swerve_x: ipn_driver_left_x
+  swerve_y: ipn_driver_left_y
+  swerve_rotate: ipn_driver_right_x
+  swerve_field_oriented_button: ipb_driver_start
+  angle_zero_button: ipb_driver_back
+  max_module_velocity: 240.0
+  corner_mode_max_velocity: 80
+  normal_mode_max_velocity: 120
+  slow_mode_max_velocity: 10
+  fast_mode_button: ipb_driver_a
+  corner_mode_button: ipb_driver_right_trigger
+  slow_mode_button: ipb_driver_left_trigger
+  velocity_increment_button: ipb_driver_dpad_up
+  velocity_decrement_button: ipb_driver_dpad_down
+  velocity_increment: 10
+
+
+global_limelight:
+  limelight: ipv_limelight_shooter
+
+log:
+#  ips_selected_auto: true
+
+global_webdashboard:
+
+  auto_selector:
+    origins: [gsc, anc, accel ]
+    destinations: [a, b, anc, ball, test]
+    actions: [blue, red, barrel, slalom, bounce, pattern, test ]
+
+  match_values:
+

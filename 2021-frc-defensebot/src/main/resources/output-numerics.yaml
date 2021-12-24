@@ -1,0 +1,137 @@
+talon:
+
+  <<: &speed_primary_defaults
+    type: fx
+    inverted: false
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: true
+    read_temperature: true
+    # The position scalar is the inches traveled per encoder click
+    # To measure the scalars more accurately, put the robot on the ground,
+    # set scalars to 1.00, and push it 10 ft while counting the encoder
+    # clicks with the computer. 120 inches / encoder clicks from dashboard
+    position_scalar: 0.000972581
+    velocity_scalar: 0.000972581
+    sensor_inverted: false
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_pure_pursuit:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+      pr_drive:
+        f: 0.06
+        p: 0.03
+        i: 0.0
+        d: 0.0
+
+
+  <<: &angle_defaults
+    type: fx
+    inverted: true
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: false
+    read_temperature: true
+    # The position scalar is the degrees traveled per encoder click
+    # To measure the scalars more accurately, put the robot on blocks,
+    # set scalars to 1.00, and rotate the a wheel by hand 10 times
+    # while counting the encoder clicks on the computer. 10 * 360 / encoder clicks from dashboard
+    position_scalar: 0.008203125
+    velocity_scalar: 0.008203125
+    sensor_inverted: false
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_pure_pursuit:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+      pr_drive:
+        f: 0.0
+        p: 0.4
+        i: 0.0
+        d: 0.0
+
+
+
+  opn_drivetrain_front_right_speed:
+    device_number: 4
+    <<: *speed_primary_defaults
+
+
+  opn_drivetrain_front_left_speed:
+    device_number: 1
+    <<: *speed_primary_defaults
+
+
+  opn_drivetrain_back_left_speed:
+    device_number: 10
+    <<: *speed_primary_defaults
+
+
+  opn_drivetrain_back_right_speed:
+    device_number: 7
+    <<: *speed_primary_defaults
+
+
+
+
+  opn_drivetrain_front_right_angle_motor:
+    device_number: 5
+    <<: *angle_defaults
+
+  opn_drivetrain_front_left_angle_motor:
+    device_number: 2
+    <<: *angle_defaults
+
+  opn_drivetrain_back_left_angle_motor:
+    device_number: 11
+    <<: *angle_defaults
+
+  opn_drivetrain_back_right_angle_motor:
+    device_number: 8
+    <<: *angle_defaults
+
+# -----------Climber--------
+  opn_climber_winch:
+    device_number: 13
+    inverted: true
+    forward_limit_switch_enabled: true
+    forward_limit_switch_normally_closed: true
+    reverse_limit_switch_enabled: true
+    reverse_limit_switch_normally_closed: true
+
+absolute_encoder_talon:
+
+  opn_drivetrain_front_right_angle:
+    talon: opn_drivetrain_front_right_angle_motor
+    absolute_position_input: ipv_drivetrain_front_right_angle
+
+  opn_drivetrain_front_left_angle:
+    talon: opn_drivetrain_front_left_angle_motor
+    absolute_position_input: ipv_drivetrain_front_left_angle
+
+  opn_drivetrain_back_left_angle:
+    talon: opn_drivetrain_back_left_angle_motor
+    absolute_position_input: ipv_drivetrain_back_left_angle
+
+  opn_drivetrain_back_right_angle:
+    talon: opn_drivetrain_back_right_angle_motor
+    absolute_position_input: ipv_drivetrain_back_right_angle
+
+motor_group:
+
+
+servo:
+
+  opn_climber_ratchet:
+    device_channel: 0

@@ -1,0 +1,79 @@
+single_state:
+
+    # ------------Climber-------
+
+
+    st_climber_extend:
+        behavior: bh_climber_states
+        behavior_config:
+            servo_zero_offset: 0.0
+
+    st_climber_retract:
+        behavior: bh_climber_states
+        behavior_config:
+            servo_zero_offset: 0.7
+
+    st_climber_no_ratchet:
+        behavior: bh_climber_states
+        behavior_config:
+            ratchet_engaged: false
+            winch_speed: 0.0
+            use_joystick: false
+
+    st_climber_retract_no_ratchet:
+        behavior: bh_climber_states
+        behavior_config:
+            servo_zero_offset: 0.0
+            winch_speed: -0.5
+            use_joystick: false
+
+    st_climber_stop:
+        behavior: bh_climber_states
+        behavior_config:
+            servo_zero_offset: 0.7
+
+    # ------ Drivetrain ------
+
+    st_drivetrain_zero:
+        behavior: bh_drivetrain_zero
+        behavior_config:
+            timeout_time: 1000
+            zeroing_threshold: 0.2
+
+    st_drivetrain_swerve:
+        behavior: bh_drivetrain_swerve
+
+    st_drivetrain_accel_test:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_accel_test
+            target_heading: 0.0
+
+    # ------------Paths----------
+
+    st_drivetrain_straightline:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_straightline
+
+
+done_for_time_state:
+    wt_climber_retract_no_ratchet:
+        state: st_climber_retract_no_ratchet
+        state_timeout: 200
+        max_timeout: 200
+
+    wt_climber_no_ratchet:
+        state: st_climber_no_ratchet
+        state_timeout: 500
+        max_timeout: 500
+
+parallel_state:
+
+
+sequencer_state:
+    sq_auto_auto_drivetrain_straightline:
+        sequence: [ st_drivetrain_straightline ]
+
+    sq_climber_extend:
+        sequence: [ wt_climber_no_ratchet, wt_climber_retract_no_ratchet, st_climber_extend ]

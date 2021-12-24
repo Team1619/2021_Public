@@ -1,0 +1,9 @@
+other:
+  pr_swerve_heading:
+    profiles:
+      navx:
+        f: 0.0
+        p: 0.008
+        i: 0.0
+        d: 0.0
+        max_output: 1.0

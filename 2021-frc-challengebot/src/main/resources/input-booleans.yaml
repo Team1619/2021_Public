@@ -1,0 +1,106 @@
+controller_button:
+  ipb_driver_a:
+    port: 0
+    button: a
+  ipb_driver_b:
+    port: 0
+    button: b
+  ipb_driver_y:
+    port: 0
+    button: y
+  ipb_driver_x:
+    port: 0
+    button: x
+  ipb_driver_left_bumper:
+    port: 0
+    button: left_bumper
+  ipb_driver_right_bumper:
+    port: 0
+    button: right_bumper
+  ipb_driver_left_trigger:
+    port: 0
+    button: left_trigger
+  ipb_driver_right_trigger:
+    port: 0
+    button: right_trigger
+  ipb_driver_dpad_up:
+    port: 0
+    button: d_pad_up
+  ipb_driver_dpad_down:
+    port: 0
+    button: d_pad_down
+  ipb_driver_dpad_left:
+    port: 0
+    button: d_pad_left
+  ipb_driver_dpad_right:
+    port: 0
+    button: d_pad_right
+  ipb_driver_back:
+    port: 0
+    button: back
+  ipb_driver_start:
+    port: 0
+    button: start
+  ipb_driver_left_stick_button:
+    port: 0
+    button: left_stick_button
+  ipb_driver_right_stick_button:
+    port: 0
+    button: right_stick_button
+
+  ipb_operator_a:
+    port: 1
+    button: a
+  ipb_operator_b:
+    port: 1
+    button: b
+  ipb_operator_y:
+    port: 1
+    button: y
+  ipb_operator_x:
+    port: 1
+    button: x
+  ipb_operator_left_bumper:
+    port: 1
+    button: left_bumper
+  ipb_operator_right_bumper:
+    port: 1
+    button: right_bumper
+  ipb_operator_left_trigger:
+    port: 1
+    button: left_trigger
+  ipb_operator_right_trigger:
+    port: 1
+    button: right_trigger
+  ipb_operator_dpad_up:
+    port: 1
+    button: d_pad_up
+  ipb_operator_dpad_down:
+    port: 1
+    button: d_pad_down
+  ipb_operator_dpad_left:
+    port: 1
+    button: d_pad_left
+  ipb_operator_dpad_right:
+    port: 1
+    button: d_pad_right
+  ipb_operator_back:
+    port: 1
+    button: back
+  ipb_operator_start:
+    port: 1
+    button: start
+  ipb_operator_left_stick_button:
+    port: 1
+    button: left_stick_button
+  ipb_operator_right_stick_button:
+    port: 1
+    button: right_stick_button
+
+digital_input:
+#  ipb_elevator_beam_sensor:
+#    id: 0
+#    inverted: true
+
+
+

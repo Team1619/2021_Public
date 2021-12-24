@@ -1,0 +1,159 @@
+talon:
+
+  <<: &speed_primary_defaults
+    type: fx
+    inverted: false
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: true
+    read_temperature: true
+    # reciprocal of the counts per unit of the module
+#    position_scalar: 0.00107352 #20 tooth
+#    velocity_scalar: 0.00107352
+    position_scalar: 0.00128822 #24 tooth
+    velocity_scalar: 0.00128822
+    sensor_inverted: false
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_pure_pursuit:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+      pr_drive:
+        f: 0.06
+        p: 0.03
+        i: 0.0
+        d: 0.0
+
+  <<: &speed_follower_defaults
+    type: fx
+    inverted: false
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+
+  <<: &angle_defaults
+    type: fx
+    inverted: false
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: false
+    read_temperature: true
+    position_scalar: 0.01464885474
+    velocity_scalar: 0.01464885474
+    sensor_inverted: false
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_pure_pursuit:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+      pr_drive:
+        f: 0.0
+        p: 0.4
+        i: 0.0
+        d: 0.0
+
+
+
+  opn_drivetrain_front_right_speed_primary:
+    device_number: 14
+    <<: *speed_primary_defaults
+
+  opn_drivetrain_front_right_speed_follower:
+    device_number: 15
+    <<: *speed_follower_defaults
+
+
+  opn_drivetrain_front_left_speed_primary:
+    device_number: 2
+    <<: *speed_primary_defaults
+
+  opn_drivetrain_front_left_speed_follower:
+    device_number: 3
+    <<: *speed_follower_defaults
+
+
+  opn_drivetrain_back_left_speed_primary:
+    device_number: 6
+    <<: *speed_primary_defaults
+
+  opn_drivetrain_back_left_speed_follower:
+    device_number: 7
+    <<: *speed_follower_defaults
+
+
+  opn_drivetrain_back_right_speed_primary:
+    device_number: 10
+    <<: *speed_primary_defaults
+
+  opn_drivetrain_back_right_speed_follower:
+    device_number: 11
+    <<: *speed_follower_defaults
+
+
+
+  opn_drivetrain_front_right_angle_motor:
+    device_number: 13
+    <<: *angle_defaults
+
+  opn_drivetrain_front_left_angle_motor:
+    device_number: 1
+    <<: *angle_defaults
+
+  opn_drivetrain_back_left_angle_motor:
+    device_number: 5
+    <<: *angle_defaults
+
+  opn_drivetrain_back_right_angle_motor:
+    device_number: 9
+    <<: *angle_defaults
+
+
+absolute_encoder_talon:
+
+  opn_drivetrain_front_right_angle:
+    talon: opn_drivetrain_front_right_angle_motor
+    absolute_position_input: ipv_drivetrain_front_right_angle
+
+  opn_drivetrain_front_left_angle:
+    talon: opn_drivetrain_front_left_angle_motor
+    absolute_position_input: ipv_drivetrain_front_left_angle
+
+  opn_drivetrain_back_left_angle:
+    talon: opn_drivetrain_back_left_angle_motor
+    absolute_position_input: ipv_drivetrain_back_left_angle
+
+  opn_drivetrain_back_right_angle:
+    talon: opn_drivetrain_back_right_angle_motor
+    absolute_position_input: ipv_drivetrain_back_right_angle
+
+motor_group:
+  opn_drivetrain_front_right:
+    master: opn_drivetrain_front_right_speed_primary
+    followers: [ opn_drivetrain_front_right_speed_follower ]
+
+  opn_drivetrain_front_left:
+    master: opn_drivetrain_front_left_speed_primary
+    followers: [ opn_drivetrain_front_left_speed_follower ]
+
+  opn_drivetrain_back_right:
+    master: opn_drivetrain_back_right_speed_primary
+    followers: [ opn_drivetrain_back_right_speed_follower ]
+
+  opn_drivetrain_back_left:
+    master: opn_drivetrain_back_left_speed_primary
+    followers: [ opn_drivetrain_back_left_speed_follower ]
+
+servo:
+  opn_collector_servo:
+    device_channel: 0

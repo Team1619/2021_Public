@@ -1,0 +1,144 @@
+single_state:
+
+    # ------ Drivetrain ------
+
+    st_drivetrain_zero:
+        behavior: bh_drivetrain_zero
+        behavior_config:
+            timeout_time: 1000
+            zeroing_threshold: 0.2
+
+    st_drivetrain_swerve:
+        behavior: bh_drivetrain_swerve
+
+    st_drivetrain_accel_test:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_accel_test
+            target_heading: 0.0
+
+    st_drivetrain_swerve_align:
+        behavior: bh_drivetrain_swerve
+        behavior_config:
+            target_heading: 0.0
+            target_limelight: true
+
+    # ------------Collector----------
+    st_collector_servo_zero:
+        behavior: bh_collector_servo_zero
+        behavior_config:
+            servo_zero_offset: 0.0
+            timeout_time: 0
+
+    st_collector_servo_release:
+        behavior: bh_collector_servo_states
+        behavior_config:
+            servo_zero_offset: 0.0
+            # 1.0 = 180 degreed
+
+    # ------------Paths----------
+
+    st_drivetrain_anc_barrel:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_barrel
+            heading: 0.0
+
+    st_drivetrain_anc_slalom:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_slalom
+            heading: 0.0
+
+    st_drivetrain_anc_bounce:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_bounce
+            heading: 0.0
+
+    st_drivetrain_anc_bounce_1:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_bounce_1
+            heading: 0.0
+
+    st_drivetrain_anc_bounce_2:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_bounce_2
+            heading: 0.0
+
+    st_drivetrain_anc_bounce_3:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_bounce_3
+            heading: 0.0
+
+    st_drivetrain_anc_bounce_4:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_anc_bounce_4
+            heading: 0.0
+
+    st_drivetrain_gsc_a_blue:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_gsc_a_blue
+            heading: 0.0
+
+    st_drivetrain_gsc_a_red:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_gsc_a_red
+            heading: 0.0
+
+    st_drivetrain_gsc_b_blue:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_gsc_b_blue
+            heading: 0.0
+
+    st_drivetrain_gsc_b_red:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_gsc_b_red
+            heading: 0.0
+
+    st_drivetrain_straightline:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_straightline
+
+    st_drivetrain_oval:
+        behavior: bh_drivetrain_swerve_pure_pursuit
+        behavior_config:
+            path_name: pt_oval
+
+
+
+
+done_for_time_state:
+
+
+parallel_state:
+
+
+sequencer_state:
+    sq_auto_accel_test_test:
+        sequence: [ st_drivetrain_accel_test ]
+    sq_auto_anc_anc_barrel:
+        sequence: [ st_drivetrain_anc_barrel ]
+    sq_auto_anc_anc_slalom:
+        sequence: [ st_drivetrain_anc_slalom ]
+    sq_auto_anc_anc_bounce:
+        sequence: [ st_drivetrain_anc_bounce ]
+    sq_auto_gsc_a_blue:
+        sequence: [ st_drivetrain_gsc_a_blue ]
+    sq_auto_gsc_a_red:
+        sequence: [ st_drivetrain_gsc_a_red ]
+    sq_auto_gsc_b_blue:
+        sequence: [ st_drivetrain_gsc_b_blue ]
+    sq_auto_gsc_b_red:
+        sequence: [ st_drivetrain_gsc_b_red ]
+    sq_auto_anc_bounce:
+        sequence: [ st_drivetrain_anc_bounce_1, st_drivetrain_anc_bounce_2, st_drivetrain_anc_bounce_3, st_drivetrain_anc_bounce_4 ]
