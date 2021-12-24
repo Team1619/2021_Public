@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.uacr'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Contains NonNull and Nullable annotations to prevent NullPointerExceptions
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
