@@ -1,0 +1,88 @@
+path:
+  # set to 240 inches to measure and calculate scalars
+  pt_drive_anywhere_0ball_forward:
+    path: [ [ 0, 0 ], [ 24, 0 ] ]
+    model: slow
+
+  pt_drive_right_line_to_trenchfront:
+    path: [ [-16, -67], [-86, -67] ]
+    model: standard
+    start:
+        x: -16.0
+        y: -67.0
+        heading: 0.0
+
+  pt_drive_right_trenchfront_to_trenchback:
+    path: [ [-86, -67], [-246, -67], [-246, -66.5]]
+    model: slow
+
+  pt_drive_right_trenchback_to_trenchmid:
+    path: [ [-246, -66.5], [-116, -67] ]
+    model: standard
+
+  pt_drive_right_trenchmid_to_trenchfront:
+    path: [ [-116, -67], [-86, -67] ]
+    model: standard
+
+  pt_drive_goal_line_to_goalback:
+    path: [ [ -16, 0 ], [ -46, 0 ] ]
+    model: slow
+    start:
+      x: -16.0
+      y: 0.0
+      heading: 0.0
+
+  pt_drive_goalback_to_generator:
+    path: [ [-46, 0], [-102, 0], [-112, 0], [-150, -20], [-140, 40], [-142, 60] ]
+    model: slow
+
+  pt_drive_generator_to_rightgenerator:
+    path: [ [ -142, 60], [ -131, 30 ] ]
+    model: slow
+
+  pt_drive_rightgenerator_to_goalback:
+    path: [ [ -131, 30 ], [ -126, -10 ], [-125, -10 ], [-96, -10], [-86, -10]]
+    model: slow
+
+  pt_drive_anywhere_line_to_behindline:
+    path: [ [ 0, 0 ], [ -24, 0 ] ]
+    model: standard
+
+  pt_drive_left_line_to_trenchback:
+    path: [ [ -16, 203 ], [ -136, 203 ], [ -136, 202.5 ] ]
+    model: slow
+    start:
+      x: -16.0
+      y: 203.0
+      heading: 0.0
+
+  pt_drive_left_trenchback_to_midfield:
+    path: [ [ -136, 202.5 ], [ -116, 203 ], [ -81, 135 ] ]
+    model: slow
+
+  pt_drive_left_midfield_to_goal:
+    path: [ [ -81, 135 ], [ -46, 67 ] ]
+    model: standard
+
+model:
+  standard:
+    spacing: 2.0
+    smoothing: 0.5
+    max_acceleration: 0.005
+    max_deceleration: 0.005
+    tracking_error_speed: 5.0
+    min_speed: 0.2
+    max_speed: 1.0
+    turn_speed: 0.02
+    look_ahead_distance: 30.0
+
+  slow:
+    spacing: 2.0
+    smoothing: 0.5
+    max_acceleration: 0.005
+    max_deceleration: 0.005
+    tracking_error_speed: 5.0
+    min_speed: 0.2
+    max_speed: .2
+    turn_speed: 0.02
+    look_ahead_distance: 30.0

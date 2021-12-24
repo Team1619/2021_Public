@@ -1,0 +1,16 @@
+solenoid_double:
+  opb_drivetrain_gear_shifter:
+    device_number_primary: 7
+    device_number_follower: 0
+
+  opb_collector_extend:
+    device_number_primary: 2
+    device_number_follower: 5
+
+  opb_climber_ratchet:
+    device_number_primary: 6
+    device_number_follower: 1
+
+  opb_elevator_extend:
+    device_number_primary: 3
+    device_number_follower: 4

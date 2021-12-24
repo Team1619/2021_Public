@@ -1,0 +1,209 @@
+talon:
+  opn_drivetrain_left_primary:
+    device_number: 0
+    inverted: true
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: true
+    read_temperature: true
+    # (inch/click)
+    position_scalar: 0.00087000
+    # velocity_scalar (feet/click) calculated by position_scalar/12
+    velocity_scalar: 0.00007250
+    sensor_inverted: true
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_pure_pursuit:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+      pr_drive:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+
+  opn_drivetrain_left_follower_1:
+    device_number: 1
+    inverted: true
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+
+  opn_drivetrain_right_primary:
+    device_number: 14
+    inverted: false
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: true
+    read_temperature: true
+    # (inch/click)
+    position_scalar: 0.00087000
+    # velocity_scalar (feet/click) calculated by position_scalar/12
+    velocity_scalar: 0.00007250
+    sensor_inverted: true
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    counts_per_unit: 1187.6
+    profiles:
+      pr_pure_pursuit:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+      pr_drive:
+        f: 0.1
+        p: 0.04
+        i: 0.0
+        d: 0.0
+
+  opn_drivetrain_right_follower_1:
+    device_number: 15
+    inverted: false
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+
+  opn_collector_rollers:
+    device_number: 5
+    inverted: true
+
+  opn_hopper:
+    device_number: 4
+    inverted: true
+    feedback_device: quad_encoder
+    read_position: true
+    read_velocity: true
+    sensor_inverted: true
+    position_scalar: 0.00024661
+    velocity_scalar: 0.00024661
+    profiles:
+      pr_spin:
+        f: 0.5
+        p: 3.0
+        i: 0.0
+        d: 0.0
+
+  opn_elevator:
+    device_number: 2
+    inverted: false
+    feedback_device: quad_encoder
+    read_position: true
+    read_velocity: true
+    position_scalar: 0.00471698
+    velocity_scalar: 0.00471698
+
+
+  opn_turret:
+    device_number: 11
+    inverted: true
+    sensor_inverted: true
+    feedback_device: quad_encoder
+    read_position: true
+    read_velocity: true
+    position_scalar: 0.011778563
+    velocity_scalar: 0.011778563
+    profiles:
+      pr_position:
+        f: 2.0
+        p: 3.0
+        i: 0.0
+        d: 0.0
+        acceleration: 1800
+        cruise_velocity: 1000
+      pr_align:
+        f: 1.5
+        p: 0.5
+        i: 0.0
+        d: 0.0
+      pr_position_align:
+        f: 0.0
+        p: 2.5
+        i: 0.0
+        d: 0.0
+
+  opn_flywheel_primary:
+    device_number: 12
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: true
+    position_scalar: 0.00097943
+    velocity_scalar: 0.05876592
+    read_temperature: true
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_prime:
+        f: 0.045
+        p: 1.0
+        i: 0.0
+        d: 0.0
+      pr_shoot:
+        f: 0.045
+        p: 1.0
+        i: 0.0
+        d: 0.0
+
+  opn_flywheel_follower:
+    device_number: 3
+    inverted: true
+    read_temperature: true
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+
+  opn_climber_winch:
+    device_number: 13
+    feedback_device: internal_encoder
+    read_position: true
+    read_velocity: true
+    position_scalar: 0.00009437
+    velocity_scalar: 0.00009437
+    current_limit_enabled: true
+    continuous_current_limit_amps: 25
+    peak_current_limit_amps: 30
+    peak_current_duration_milliseconds: 100
+    profiles:
+      pr_climb:
+        f: 1.0
+        p: 0.0
+        i: 0.0
+        d: 0.0
+        acceleration: 500
+        cruise_velocity: 500
+
+  opn_climb_roller:
+    device_number: 10
+    feedback_device: quad_encoder
+    sensor_inverted: true
+    read_position: true
+    position_scalar: 0.004656
+    position_input_name: ipn_drivetrain_left_position
+    current_limit_enabled: true
+
+victor:
+
+
+motor_group:
+  opn_drivetrain_left:
+    master: opn_drivetrain_left_primary
+    followers: [opn_drivetrain_left_follower_1]
+
+  opn_drivetrain_right:
+    master: opn_drivetrain_right_primary
+    followers: [opn_drivetrain_right_follower_1]
+
+  opn_flywheel:
+    master: opn_flywheel_primary
+    followers: [opn_flywheel_follower]
