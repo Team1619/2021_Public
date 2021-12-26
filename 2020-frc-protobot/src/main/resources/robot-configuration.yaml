@@ -1,0 +1,58 @@
+general:
+  initial_teleop_mode: teleop_mode
+  #  initial_teleop_mode: manual_mode
+
+  states:
+
+    sequences:
+      priority_level_1: []
+    parallels:
+      priority_level_1: []
+    ss_drivetrain:
+      priority_level_1: [st_drivetrain_zero, st_drivetrain_percent]
+      default: [st_drivetrain_percent]
+
+  subsystems: [ss_drivetrain]
+
+  input_booleans: [
+    ipb_driver_a, ipb_driver_b, ipb_driver_y, ipb_driver_x, ipb_driver_left_bumper, ipb_driver_right_bumper, ipb_driver_left_trigger, ipb_driver_right_trigger, ipb_driver_dpad_up, ipb_driver_dpad_down, ipb_driver_dpad_left, ipb_driver_dpad_right, ipb_driver_back, ipb_driver_start, ipb_driver_left_stick_button, ipb_driver_right_stick_button,
+    ipb_operator_a, ipb_operator_b, ipb_operator_y, ipb_operator_x, ipb_operator_left_bumper, ipb_operator_right_bumper, ipb_operator_left_trigger, ipb_operator_right_trigger, ipb_operator_dpad_up, ipb_operator_dpad_down, ipb_operator_dpad_left, ipb_operator_dpad_right, ipb_operator_back, ipb_operator_start, ipb_operator_left_stick_button, ipb_operator_right_stick_button,
+
+  ]
+
+  input_numerics: [
+    ipn_driver_left_y, ipn_driver_left_x, ipn_driver_right_y, ipn_driver_right_x,
+    ipn_operator_left_y, ipn_operator_left_x, ipn_operator_right_y, ipn_operator_right_x
+  ]
+
+  input_vectors: [ipv_odometry, ipv_navx]
+
+  output_numerics: [opn_drivetrain_left, opn_drivetrain_right]
+
+  output_booleans: []
+
+
+global_timing:
+  frame_time_threshold_input_service: 80
+  frame_time_threshold_logging_service: 80
+  frame_time_threshold_output_service: 80
+  frame_time_threshold_state_service: 80
+  frame_time_threshold_webdashboard_service: 80
+  frame_cycle_time_threshold_core_thread: 80
+  frame_cycle_time_threshold_info_thread: 80
+
+global_drivetrain:
+  x: ipn_driver_right_x
+  y: ipn_driver_left_y
+
+log:
+
+
+global_webdashboard:
+
+  auto_selector:
+    origins: [None]
+    destinations: [None]
+    actions: [None]
+
+  match_values:
